@@ -202,7 +202,10 @@ call dein#add('davidhalter/jedi-vim')
 call dein#add('carlitux/deoplete-ternjs')
 call dein#add('mhartington/deoplete-typescript')
 call dein#add('zchee/deoplete-go', {'build': 'make'})
+call dein#add('eagletmt/neco-ghc')
 call dein#add('fatih/vim-go')
+
+" 多行拼合
 call dein#add('AndrewRadev/splitjoin.vim')
 
 " 括号自动补完
@@ -243,8 +246,8 @@ call dein#add('scrooloose/nerdcommenter')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 
 " 快速查找
-" call dein#add('/usr/local/opt/fzf')
-call dein#add('/home/liuchang/.linuxbrew/opt/fzf')
+call dein#add('/usr/local/opt/fzf')
+" call dein#add('/home/liuchang/.linuxbrew/opt/fzf')
 call dein#add('junegunn/fzf.vim')
 
 " 跳转
@@ -275,15 +278,19 @@ call dein#add('majutsushi/tagbar')
 call dein#add('junegunn/vim-easy-align')
 
 " 语法高亮
+" 常用语言语法高亮和缩进设定 vim-polyglot
+" JavaScript单独设定
+call dein#add('sheerun/vim-polyglot')
+
 call dein#add('othree/yajs.vim')
 call dein#add('othree/es.next.syntax.vim')
 call dein#add('othree/javascript-libraries-syntax.vim')
-call dein#add('HerringtonDarkholme/yats.vim')
-call dein#add('othree/html5.vim')
-call dein#add('digitaltoad/vim-pug')
-call dein#add('kchmck/vim-coffee-script')
-call dein#add('hail2u/vim-css3-syntax')
-call dein#add('cakebaker/scss-syntax.vim')
+call dein#add('HerringtonDarkholme/yats.vim') 
+" call dein#add('othree/html5.vim')
+" call dein#add('digitaltoad/vim-pug')
+" call dein#add('kchmck/vim-coffee-script')
+" call dein#add('hail2u/vim-css3-syntax')
+" call dein#add('cakebaker/scss-syntax.vim')
 
 " Markdown预览
 call dein#add('iamcco/markdown-preview.vim')
@@ -304,6 +311,7 @@ call dein#end()
 filetype plugin indent on
 let python_highlight_all=1
 syntax enable
+syntax on
 
 " 启动时自动安装缺失插件
 if dein#check_install()
@@ -666,5 +674,14 @@ augroup VimCSS3Syntax
   autocmd FileType css setlocal iskeyword+=-
 augroup END
 
-" coffee
+" vim-polyglot
+let g:polyglot_disabled = ['javascript', 'typescript']
 
+" haskell-vim
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
