@@ -202,7 +202,10 @@ call dein#add('davidhalter/jedi-vim')
 call dein#add('carlitux/deoplete-ternjs')
 call dein#add('mhartington/deoplete-typescript')
 call dein#add('zchee/deoplete-go', {'build': 'make'})
+call dein#add('eagletmt/neco-ghc')
 call dein#add('fatih/vim-go')
+
+" 多行拼合
 call dein#add('AndrewRadev/splitjoin.vim')
 
 " 括号自动补完
@@ -214,15 +217,13 @@ call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 
 " 主题
-call dein#add('trusktr/seti.vim')
+call dein#add('w0ng/vim-hybrid')
 call dein#add('mhartington/oceanic-next')
+call dein#add('joshdick/onedark.vim')
 
 " 文件操作
 call dein#add('tpope/vim-eunuch')
 call dein#add('scrooloose/nerdtree')
-
-" 边侧标记
-call dein#add('airblade/vim-gitgutter')
 
 " 显示缩进线
 call dein#add('Yggdroot/indentLine')
@@ -243,8 +244,8 @@ call dein#add('scrooloose/nerdcommenter')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 
 " 快速查找
-" call dein#add('/usr/local/opt/fzf')
-call dein#add('/home/liuchang/.linuxbrew/opt/fzf')
+call dein#add('/usr/local/opt/fzf')
+" call dein#add('/home/liuchang/.linuxbrew/opt/fzf')
 call dein#add('junegunn/fzf.vim')
 
 " 跳转
@@ -275,15 +276,19 @@ call dein#add('majutsushi/tagbar')
 call dein#add('junegunn/vim-easy-align')
 
 " 语法高亮
+" 常用语言语法高亮和缩进设定 vim-polyglot
+" JavaScript单独设定
+call dein#add('sheerun/vim-polyglot')
+
 call dein#add('othree/yajs.vim')
 call dein#add('othree/es.next.syntax.vim')
 call dein#add('othree/javascript-libraries-syntax.vim')
 call dein#add('HerringtonDarkholme/yats.vim')
-call dein#add('othree/html5.vim')
-call dein#add('digitaltoad/vim-pug')
-call dein#add('kchmck/vim-coffee-script')
-call dein#add('hail2u/vim-css3-syntax')
-call dein#add('cakebaker/scss-syntax.vim')
+" call dein#add('othree/html5.vim')
+" call dein#add('digitaltoad/vim-pug')
+" call dein#add('kchmck/vim-coffee-script')
+" call dein#add('hail2u/vim-css3-syntax')
+" call dein#add('cakebaker/scss-syntax.vim')
 
 " Markdown预览
 call dein#add('iamcco/markdown-preview.vim')
@@ -296,6 +301,7 @@ call dein#add('tmhedberg/SimpylFold')
 
 " git插件
 call dein#add('tpope/vim-fugitive')
+call dein#add('airblade/vim-gitgutter')
 
 " 必须标记结束
 call dein#end()
@@ -304,6 +310,7 @@ call dein#end()
 filetype plugin indent on
 let python_highlight_all=1
 syntax enable
+syntax on
 
 " 启动时自动安装缺失插件
 if dein#check_install()
@@ -316,6 +323,7 @@ endif
 " 插件设置
 " deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#max_menu_width = 80 
 let g:deoplete#sources#tss#javascript_support = 1
 let g:tern_request_timeout = 1
 let g:used_javascript_libs = 'jquery,underscore'
@@ -368,7 +376,9 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap ]b <Plug>AirlineSelectPrevTab
 nmap [b <Plug>AirlineSelectNextTab
 
-let g:airline_theme='oceanicnext'
+" let g:airline_theme='oceanicnext'
+" let g:airline_theme='hybridline'
+let g:airline_theme='onedark'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -386,16 +396,25 @@ let g:airline_symbols.whitespace = 'Ξ'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 " 设定主题
+syntax enable
+set background=dark
 if (has("termguicolors"))
  set termguicolors
 endif
 
-syntax enable
-colorscheme OceanicNext
-" enable italics, disabled by default
-let g:oceanic_next_terminal_italic = 1
-" enable bold, disabled by default
-let g:oceanic_next_terminal_bold = 1
+colorscheme onedark
+
+" colorscheme OceanicNext
+" let g:oceanic_next_terminal_italic = 1
+" let g:oceanic_next_terminal_bold = 1
+
+" try
+"     colorscheme hybrid
+" catch /:E185/
+"     " do nothing
+" endtry
+" let g:hybrid_custom_term_colors = 1
+" let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 
 " 配置Neomake
 autocmd BufReadPost,BufWritePost * Neomake
@@ -666,5 +685,19 @@ augroup VimCSS3Syntax
   autocmd FileType css setlocal iskeyword+=-
 augroup END
 
-" coffee
+" vim-polyglot
+let g:polyglot_disabled = ['javascript', 'typescript']
 
+" haskell-vim
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+
+" neco-ghc
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+let g:necoghc_enable_detailed_browse = 1
