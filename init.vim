@@ -323,7 +323,7 @@ endif
 " 插件设置
 " deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#max_menu_width = 80 
+let g:deoplete#max_menu_width = 80
 let g:deoplete#sources#tss#javascript_support = 1
 let g:tern_request_timeout = 1
 let g:used_javascript_libs = 'jquery,underscore'
