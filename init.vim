@@ -306,16 +306,16 @@ call dein#add('airblade/vim-gitgutter')
 " 必须标记结束
 call dein#end()
 
+" 启动时自动安装缺失插件
+if dein#check_install()
+  call dein#install()
+endif
+
 " 开启插件语法识别
 filetype plugin indent on
 let python_highlight_all=1
 syntax enable
 syntax on
-
-" 启动时自动安装缺失插件
-if dein#check_install()
-  call dein#install()
-endif
 "<<================================
 
 
