@@ -321,6 +321,34 @@ syntax enable
 syntax on
 "<<================================
 
+" 设定主题
+syntax enable
+set background=dark
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" onedark
+" colorscheme onedark
+
+" gruvbox
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
+
+" oceanic
+" let g:oceanic_next_terminal_italic = 1
+" let g:oceanic_next_terminal_bold = 1
+" colorscheme OceanicNext
+"
+" try
+"     colorscheme hybrid
+" catch /:E185/
+"     " do nothing
+" endtry
+" let g:hybrid_custom_term_colors = 1
+" let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+
 
 " >>==============================
 " 插件设置
@@ -397,34 +425,6 @@ let g:airline_symbols.crypt = '🔒'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
-
-" 设定主题
-syntax enable
-set background=dark
-if (has("termguicolors"))
- set termguicolors
-endif
-
-" onedark
-" colorscheme onedark
-
-" gruvbox
-let g:gruvbox_italic = 1
-let g:gruvbox_contrast_dark='hard'
-colorscheme gruvbox
-
-" oceanic
-" let g:oceanic_next_terminal_italic = 1
-" let g:oceanic_next_terminal_bold = 1
-" colorscheme OceanicNext
-"
-" try
-"     colorscheme hybrid
-" catch /:E185/
-"     " do nothing
-" endtry
-" let g:hybrid_custom_term_colors = 1
-" let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 
 " 配置Neomake
 autocmd BufReadPost,BufWritePost * Neomake
