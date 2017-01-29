@@ -220,6 +220,10 @@ call dein#add('vim-airline/vim-airline-themes')
 call dein#add('w0ng/vim-hybrid')
 call dein#add('mhartington/oceanic-next')
 call dein#add('joshdick/onedark.vim')
+call dein#add('morhetz/gruvbox')
+
+" 字体
+" call dein#add('ryanoasis/vim-devicons')
 
 " 文件操作
 call dein#add('tpope/vim-eunuch')
@@ -235,7 +239,6 @@ call dein#add('terryma/vim-expand-region')
 call dein#add('sjl/gundo.vim')
 
 " 语法检查
-" call dein#add('vim-syntastic/syntastic')
 call dein#add('neomake/neomake')
 call dein#add('tell-k/vim-autopep8')
 
@@ -361,6 +364,7 @@ endif
 let g:neopairs#enable = 1
 
 " airline
+" let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -377,8 +381,8 @@ nmap ]b <Plug>AirlineSelectPrevTab
 nmap [b <Plug>AirlineSelectNextTab
 
 " let g:airline_theme='oceanicnext'
-" let g:airline_theme='hybridline'
-let g:airline_theme='onedark'
+" let g:airline_theme='onedark'
+let g:airline_theme='gruvbox'
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -393,7 +397,6 @@ let g:airline_symbols.crypt = '🔒'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
-let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 " 设定主题
 syntax enable
@@ -402,12 +405,19 @@ if (has("termguicolors"))
  set termguicolors
 endif
 
-colorscheme onedark
+" onedark
+" colorscheme onedark
 
-" colorscheme OceanicNext
+" gruvbox
+let g:gruvbox_italic = 1
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
+
+" oceanic
 " let g:oceanic_next_terminal_italic = 1
 " let g:oceanic_next_terminal_bold = 1
-
+" colorscheme OceanicNext
+"
 " try
 "     colorscheme hybrid
 " catch /:E185/
@@ -686,7 +696,7 @@ augroup VimCSS3Syntax
 augroup END
 
 " vim-polyglot
-let g:polyglot_disabled = ['javascript', 'typescript']
+let g:polyglot_disabled = ['javascript', 'typescript', 'python']
 
 " haskell-vim
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
