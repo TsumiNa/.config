@@ -711,3 +711,12 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 let g:necoghc_enable_detailed_browse = 1
+
+" Python 语法高亮补充
+augroup pythoon
+    autocmd!
+    autocmd FileType python
+        \ syn match pythonBoolean "\(\W\|^\)\zsself\ze\."
+    " autocmd FileType python
+    "     \ syn match pythonBoolean .
+augroup end
